@@ -1,16 +1,32 @@
 import { useState, useEffect } from 'react';
 
 // ⚠️ weiwei
-const AIRTABLE_TOKEN = 'patyF0W1KZWq2vY3Y.81ee26bcf1a4ad9c5c25507adf62684d686c77a8723b68381b236c260c5a27a5'; // 以 pat 开头，很长一串
-const BASE_ID = 'appe0azTDJhaS30Se'; // 以 app 开头
-const TABLE_NAME = 'Table 1'; // 你的表名，默认是 Table 1
+const AIRTABLE_TOKEN = 'patyF0W1KZWq2vY3Y.81ee26bcf1a4ad9c5c25507adf62684d686c77a8723b68381b236c260c5a27a5';
+const BASE_ID = 'appe0azTDJhaS30Se';
+const TABLE_NAME = 'Table 1';
+
+// 定义数据类型（TypeScript 需要）
+interface Post {
+  id: string;
+  fields: {
+    标题?: string;
+    内容?: string;
+    视频?: Array<{
+      url: string;
+    }>;
+    封面图?: Array<{
+      url: string;
+    }>;
+    发布时间?: string;
+  };
+  createdTime: string;
+}
 
 export default function AirtableContent() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 从 Airtable 获取数据
     fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
       headers: {
         'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
@@ -43,13 +59,9 @@ export default function AirtableContent() {
           padding: '15px',
           backgroundColor: '#f9f9f9'
         }}>
-          {/* 标题 */}
           <h3>{post.fields.标题 || '无标题'}</h3>
-          
-          {/* 内容 */}
           <p style={{ color: '#666' }}>{post.fields.内容 || '暂无内容'}</p>
           
-          {/* 视频播放 */}
           {post.fields.视频 && post.fields.视频[0] && (
             <div style={{ marginTop: '10px' }}>
               <video 
@@ -62,7 +74,6 @@ export default function AirtableContent() {
             </div>
           )}
           
-          {/* 发布时间 */}
           <small style={{ color: '#999' }}>
             发布时间: {post.fields.发布时间 || new Date(post.createdTime).toLocaleString()}
           </small>
