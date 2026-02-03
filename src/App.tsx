@@ -91,28 +91,19 @@ function App() {
     </div>
   );
 }
+import { useState, useEffect } from 'react'; // 如果原来有这行就不用重复加
+import AirtableContent from './AirtableContent'; // ← 添加这行
+
+function App() {
+  return (
+    <div>
+      {/* 你的原有内容可以保留 */}
+      <h1>欢迎来到我的网站</h1>
+      
+      {/* 插入 Airtable 内容组件 */}
+      <AirtableContent />
+    </div>
+  );
+}
 
 export default App;
-import AirtableContent from './AirtableContent';
-
-function App() {
-  return (
-    <div>
-      <h1>我的网站</h1>
-      <AirtableContent />
-    </div>
-  );
-}
-// 如果在 src/components/ 下
-import AirtableContent from './components/AirtableContent';
-
-// 如果直接在 src/ 下  
-import AirtableContent from './AirtableContent';
-
-function App() {
-  return (
-    <div>
-      <AirtableContent />
-    </div>
-  );
-}
