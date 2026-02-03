@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+// 原有组件导入
 import Navbar from '@/components/Navbar';
 import Hero from '@/sections/Hero';
 import Highlights from '@/sections/Highlights';
@@ -14,6 +15,9 @@ import Workflow from '@/sections/Workflow';
 import FAQ from '@/sections/FAQ';
 import Contact from '@/sections/Contact';
 import Footer from '@/sections/Footer';
+
+// 新增：Airtable 组件导入
+import AirtableContent from './AirtableContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,8 +40,6 @@ function App() {
     };
 
     document.addEventListener('click', handleAnchorClick);
-
-    // Refresh ScrollTrigger on load
     ScrollTrigger.refresh();
 
     return () => {
@@ -55,53 +57,25 @@ function App() {
 
       {/* Main Content */}
       <main>
-        {/* Hero Section */}
         <Hero />
-
-        {/* Highlights */}
         <Highlights />
-
-        {/* Audience Split */}
         <AudienceSplit />
-
-        {/* About Section */}
         <About />
-
-        {/* Courses Section */}
         <Courses />
-
-        {/* Popular Tutorials */}
         <PopularTutorials />
-
-        {/* Why Choose Us */}
         <WhyChooseUs />
-
-        {/* Workflow */}
         <Workflow />
-
-        {/* FAQ */}
         <FAQ />
-
-        {/* Contact */}
+        
+        {/* 在这里插入 Airtable 内容组件（放在 Contact 前面或后面都可以）*/}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 xl:px-12">
+          <AirtableContent />
+        </section>
+        
         <Contact />
       </main>
 
-      {/* Footer */}
       <Footer />
-    </div>
-  );
-}
-import { useState, useEffect } from 'react'; // 如果原来有这行就不用重复加
-import AirtableContent from './AirtableContent'; // ← 添加这行
-
-function App() {
-  return (
-    <div>
-      {/* 你的原有内容可以保留 */}
-      <h1>欢迎来到我的网站</h1>
-      
-      {/* 插入 Airtable 内容组件 */}
-      <AirtableContent />
     </div>
   );
 }
