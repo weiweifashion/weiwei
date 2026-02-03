@@ -93,3 +93,13 @@ function App() {
 }
 
 export default App;
+import AirtableContent from './AirtableContent';
+
+function App() {
+  return (
+    <div>
+      <h1>我的网站</h1>
+      <AirtableContent />
+    </div>
+  );
+}
