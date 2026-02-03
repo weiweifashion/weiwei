@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-// ⚠️ 这里改成你的真实信息
-const AIRTABLE_TOKEN = '你的完整Token'; // 以 pat 开头，很长一串
-const BASE_ID = '你的BaseID'; // 以 app 开头
+// ⚠️ weiwei
+const AIRTABLE_TOKEN = 'patyF0W1KZWq2vY3Y.81ee26bcf1a4ad9c5c25507adf62684d686c77a8723b68381b236c260c5a27a5'; // 以 pat 开头，很长一串
+const BASE_ID = 'appe0azTDJhaS30Se'; // 以 app 开头
 const TABLE_NAME = 'Table 1'; // 你的表名，默认是 Table 1
 
 export default function AirtableContent() {
