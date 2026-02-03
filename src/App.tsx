@@ -103,3 +103,16 @@ function App() {
     </div>
   );
 }
+// 如果在 src/components/ 下
+import AirtableContent from './components/AirtableContent';
+
+// 如果直接在 src/ 下  
+import AirtableContent from './AirtableContent';
+
+function App() {
+  return (
+    <div>
+      <AirtableContent />
+    </div>
+  );
+}
